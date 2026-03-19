@@ -2,6 +2,7 @@ import os
 import random
 
 import pygame
+from paths import resource_path
 
 try:
     from PIL import Image
@@ -37,7 +38,7 @@ crypto_images = {}
 
 
 def load_crypto_images():
-    images_dir = os.path.join(os.path.dirname(__file__), "Images")
+    images_dir = resource_path("images")
 
     for crypto in CRYPTO_DEFINITIONS:
         image_path = os.path.join(images_dir, crypto["image_file"])

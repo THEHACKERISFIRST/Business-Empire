@@ -6,6 +6,7 @@ import business
 import game_data
 import investing
 import save
+from paths import resource_path
 from ui import (
     BUSINESS_LIST_VISIBLE_ITEMS,
     INVESTING_VISIBLE_ITEMS,
@@ -71,10 +72,10 @@ crypto_sell_quantity = 1.0
 crypto_buy_amount_text = "1"
 
 # Image data
-businessEmpireLogo = os.path.join(os.path.dirname(__file__), "BusinessEmpireLogo.jpg")
+businessEmpireLogo = resource_path("BusinessEmpireLogo.jpg")
 businessEmpireLogoImage = pygame.image.load(businessEmpireLogo).convert()
 pygame.display.set_icon(businessEmpireLogoImage)
-click_me_image_path = os.path.join("ClickMeIcon.png")
+click_me_image_path = resource_path("ClickMeIcon.png")
 click_me_image = pygame.image.load(click_me_image_path).convert_alpha()
 
 if save.load_game():

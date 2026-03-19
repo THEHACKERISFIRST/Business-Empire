@@ -4,8 +4,9 @@ import os
 import business
 import game_data
 import investing
+from paths import writable_path
 
-SAVE_FILE_PATH = os.path.join(os.path.dirname(__file__), "save_data.json")
+SAVE_FILE_PATH = writable_path("save_data.json")
 
 
 def get_net_worth():
