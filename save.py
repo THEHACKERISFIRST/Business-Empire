@@ -4,7 +4,7 @@ import os
 import business
 import game_data
 import investing
-from paths import writable_path
+from paths import legacy_writable_paths, writable_path
 
 SAVE_FILE_PATH = writable_path("save_data.json")
 
@@ -40,11 +40,17 @@ def save_game():
 
 
 def load_game():
-    if not os.path.exists(SAVE_FILE_PATH):
-        return False
+    load_path = SAVE_FILE_PATH
+    if not os.path.exists(load_path):
+        for legacy_path in legacy_writable_paths("save_data.json"):
+            if os.path.exists(legacy_path):
+                load_path = legacy_path
+                break
+        else:
+            return False
 
     try:
-        with open(SAVE_FILE_PATH, "r", encoding="utf-8") as save_file:
+        with open(load_path, "r", encoding="utf-8") as save_file:
             save_data = json.load(save_file)
     except (json.JSONDecodeError, OSError, TypeError, ValueError):
         return False
